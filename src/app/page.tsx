@@ -51,8 +51,35 @@ export default function Home() {
           "⚠️ AR Preview on Android requires HTTPS deployment.\n\nFor testing:\n1. Deploy to Vercel/Netlify\n2. Or use the 3D modal and click 'View in AR' button"
         );
       } else {
+        // Try direct GLB URL first, fallback to sample model if file not found
         const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${window.location.origin}/ar-files/office_desk.glb`;
-        window.open(sceneViewerUrl, "_blank");
+
+        // Add error handling
+        fetch(`${window.location.origin}/ar-files/office_desk.glb`, {
+          method: "HEAD",
+        })
+          .then((response) => {
+            if (response.ok) {
+              window.open(sceneViewerUrl, "_blank");
+            } else {
+              // Fallback to Google sample model
+              const fallbackUrl =
+                "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/324a5290-5aa7-4efc-92d6-ae0736433b12/DamagedHelmet.glb";
+              window.open(fallbackUrl, "_blank");
+              alert(
+                "📁 File belum ter-deploy. Menggunakan sample model untuk demo AR."
+              );
+            }
+          })
+          .catch(() => {
+            // Fallback to Google sample model
+            const fallbackUrl =
+              "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/324a5290-5aa7-4efc-92d6-ae0736433b12/DamagedHelmet.glb";
+            window.open(fallbackUrl, "_blank");
+            alert(
+              "📁 File belum ter-deploy. Menggunakan sample model untuk demo AR."
+            );
+          });
       }
     } else {
       // Desktop - Show fallback info

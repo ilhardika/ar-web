@@ -38,7 +38,7 @@ export default function Home() {
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       // iOS - AR Quick Look
       const link = document.createElement("a");
-      link.href = "/ar-files/Starbucks_Disposable_Cup.usdz";
+      link.href = "/ar-files/office_desk.usdz";
       link.rel = "ar";
       document.body.appendChild(link);
       link.click();
@@ -51,7 +51,7 @@ export default function Home() {
           "⚠️ AR Preview on Android requires HTTPS deployment.\n\nFor testing:\n1. Deploy to Vercel/Netlify\n2. Or use the 3D modal and click 'View in AR' button"
         );
       } else {
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${window.location.origin}/ar-files/starbucks_disposable_cup.glb`;
+        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${window.location.origin}/ar-files/office_desk.glb`;
         window.open(sceneViewerUrl, "_blank");
       }
     } else {
@@ -67,6 +67,13 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-6">
       <div className="max-w-md mx-auto text-center">
+        {/* Hero Section */}
+        <h1 className="text-4xl font-bold text-gray-800 mb-4">
+          See Our Product in 3D & AR
+        </h1>
+        <p className="text-gray-600 mb-8">Office Desk</p>
+
+        {/* Main Buttons */}
         <div className="space-y-4">
           <button
             onClick={handle3DPreview}
@@ -83,6 +90,16 @@ export default function Home() {
             {isLoading ? "Loading..." : "AR Preview"}
           </button>
         </div>
+
+        <p className="text-xs text-gray-500 mt-6">
+          3D Preview: Rotate & zoom in browser
+          <br />
+          AR Preview: Best viewed on mobile device (iOS/Android)
+          <br />
+          <span className="text-orange-600">
+            ⚠️ AR requires HTTPS for Android
+          </span>
+        </p>
       </div>
 
       {/* 3D Modal */}
@@ -106,9 +123,9 @@ export default function Home() {
                 dangerouslySetInnerHTML={{
                   __html: `
                     <model-viewer
-                      src="/ar-files/starbucks_disposable_cup.glb"
-                      ios-src="/ar-files/Starbucks_Disposable_Cup.usdz"
-                      alt="Starbucks Disposable Cup"
+                      src="/ar-files/office_desk.glb"
+                      ios-src="/ar-files/office_desk.usdz"
+                      alt="Office Desk"
                       ar
                       ar-modes="webxr scene-viewer quick-look"
                       auto-rotate
@@ -118,6 +135,8 @@ export default function Home() {
                       reveal="auto"
                       shadow-intensity="1"
                       environment-image="neutral"
+                      exposure="1"
+                      tone-mapping="commerce"
                     >
                       <div slot="poster" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f3f4f6;">
                         <div style="text-align: center;">

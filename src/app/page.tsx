@@ -38,7 +38,7 @@ export default function Home() {
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       // iOS - AR Quick Look
       const link = document.createElement("a");
-      link.href = "/ar-files/office_desk.usdz";
+      link.href = "/ar-files/mug.usdz";
       link.rel = "ar";
       document.body.appendChild(link);
       link.click();
@@ -51,8 +51,9 @@ export default function Home() {
           "⚠️ AR Preview on Android requires HTTPS deployment.\n\nFor testing:\n1. Deploy to Vercel/Netlify\n2. Or use the 3D modal and click 'View in AR' button"
         );
       } else {
-        // Use deployed office_desk model for Android AR
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${window.location.origin}/ar-files/office_desk.glb`;
+        // Use stable Google model for Android AR
+        const sceneViewerUrl =
+          "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/36cb8393-65c6-408d-a538-055ada20431b/Astronaut.glb";
         window.open(sceneViewerUrl, "_blank");
       }
     } else {
@@ -108,9 +109,9 @@ export default function Home() {
                 dangerouslySetInnerHTML={{
                   __html: `
                     <model-viewer
-                      src="/ar-files/office_desk.glb"
-                      ios-src="/ar-files/office_desk.usdz"
-                      alt="Office Desk"
+                      src="/ar-files/mug.glb"
+                      ios-src="/ar-files/mug.usdz"
+                      alt="Mug"
                       ar
                       ar-modes="webxr scene-viewer quick-look"
                       ar-scale="fixed"
@@ -124,8 +125,7 @@ export default function Home() {
                       environment-image="neutral"
                       exposure="1"
                       tone-mapping="commerce"
-                      scale="0.00005 0.00005 0.00005"
-                      camera-orbit="0deg 75deg 0.0005m"
+                      camera-orbit="180deg 75deg 1m"
                     >
                       <div slot="poster" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f3f4f6;">
                         <div style="text-align: center;">

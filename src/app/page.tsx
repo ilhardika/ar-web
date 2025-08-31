@@ -124,8 +124,8 @@ export default function Home() {
                       environment-image="neutral"
                       exposure="1"
                       tone-mapping="commerce"
-                      scale="0.05 0.05 0.05"
-                      camera-orbit="0deg 75deg 0.5m"
+                      scale="0.005 0.005 0.005"
+                      camera-orbit="0deg 75deg 0.05m"
                     >
                       <div slot="poster" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f3f4f6;">
                         <div style="text-align: center;">

@@ -51,35 +51,17 @@ export default function Home() {
           "⚠️ AR Preview on Android requires HTTPS deployment.\n\nFor testing:\n1. Deploy to Vercel/Netlify\n2. Or use the 3D modal and click 'View in AR' button"
         );
       } else {
-        // Try direct GLB URL first, fallback to sample model if file not found
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${window.location.origin}/ar-files/office_desk.glb`;
+        // Use working model for Android AR demo
+        const sceneViewerUrl =
+          "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/324a5290-5aa7-4efc-92d6-ae0736433b12/DamagedHelmet.glb";
+        window.open(sceneViewerUrl, "_blank");
 
-        // Add error handling
-        fetch(`${window.location.origin}/ar-files/office_desk.glb`, {
-          method: "HEAD",
-        })
-          .then((response) => {
-            if (response.ok) {
-              window.open(sceneViewerUrl, "_blank");
-            } else {
-              // Fallback to Google sample model
-              const fallbackUrl =
-                "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/324a5290-5aa7-4efc-92d6-ae0736433b12/DamagedHelmet.glb";
-              window.open(fallbackUrl, "_blank");
-              alert(
-                "📁 File belum ter-deploy. Menggunakan sample model untuk demo AR."
-              );
-            }
-          })
-          .catch(() => {
-            // Fallback to Google sample model
-            const fallbackUrl =
-              "https://arvr.google.com/scene-viewer/1.0?file=https://cdn.glitch.me/324a5290-5aa7-4efc-92d6-ae0736433b12/DamagedHelmet.glb";
-            window.open(fallbackUrl, "_blank");
-            alert(
-              "📁 File belum ter-deploy. Menggunakan sample model untuk demo AR."
-            );
-          });
+        // Optional: Show message about using demo model
+        setTimeout(() => {
+          alert(
+            "🚀 Using demo model for AR. Deploy your office_desk.glb to use custom model!"
+          );
+        }, 2000);
       }
     } else {
       // Desktop - Show fallback info
@@ -139,6 +121,7 @@ export default function Home() {
                       alt="Office Desk"
                       ar
                       ar-modes="webxr scene-viewer quick-look"
+                      ar-scale="fixed"
                       auto-rotate
                       camera-controls
                       style="width: 100%; height: 400px;"
@@ -148,6 +131,8 @@ export default function Home() {
                       environment-image="neutral"
                       exposure="1"
                       tone-mapping="commerce"
+                      scale="0.3 0.3 0.3"
+                      camera-orbit="0deg 75deg 1.5m"
                     >
                       <div slot="poster" style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f3f4f6;">
                         <div style="text-align: center;">

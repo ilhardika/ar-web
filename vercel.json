@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "src/app/**": {
+      "maxDuration": 30
+    }
+  },
+  "buildCommand": "npm install --legacy-peer-deps && npm run build"
+}

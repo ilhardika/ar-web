@@ -67,12 +67,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white flex items-center justify-center p-6">
       <div className="max-w-md mx-auto text-center">
-        {/* Hero Section */}
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          See Our Product in 3D & AR
-        </h1>
-        <p className="text-gray-600 mb-8">Office Desk</p>
-
         {/* Main Buttons */}
         <div className="space-y-4">
           <button
@@ -90,16 +84,6 @@ export default function Home() {
             {isLoading ? "Loading..." : "AR Preview"}
           </button>
         </div>
-
-        <p className="text-xs text-gray-500 mt-6">
-          3D Preview: Rotate & zoom in browser
-          <br />
-          AR Preview: Best viewed on mobile device (iOS/Android)
-          <br />
-          <span className="text-orange-600">
-            ⚠️ AR requires HTTPS for Android
-          </span>
-        </p>
       </div>
 
       {/* 3D Modal */}

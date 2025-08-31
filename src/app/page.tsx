@@ -116,6 +116,7 @@ export default function Home() {
                       ar-modes="webxr scene-viewer quick-look"
                       ar-scale="fixed"
                       ar-placement="floor"
+                      model-rotation="0 180 0"
                       auto-rotate
                       camera-controls
                       style="width: 100%; height: 400px;"
